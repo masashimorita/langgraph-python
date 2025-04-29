@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from langchain_tavily import TavilySearch
 from langchain_core.tools import StructuredTool
-from langgraph.prebuild import ToolNode
+from langgraph.prebuilt import ToolNode
 
 from schemas import AnswerQuestion, ReviseAnswer
 

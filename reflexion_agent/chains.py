@@ -50,7 +50,7 @@ revise_instructions = """\
   - You should use the previous critique to remove superfluous information from your answer and make SURE it is not more than 250 words.
 """
 
-reviser = actor_prompt_template.partial(
+revisor = actor_prompt_template.partial(
   first_instruction=revise_instructions,
 ) | llm.bind_tools(tools=[ReviseAnswer], tool_choice="ReviseAnswer")
 
