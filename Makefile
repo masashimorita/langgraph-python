@@ -14,3 +14,6 @@ bash:
 
 shell:
 	docker compose -f docker-compose.yml run --rm app bash poetry shell
+
+test:
+	docker compose -f docker-compose.yml run --rm app sh -c "pytest . -s -v"
