@@ -150,3 +150,6 @@ letsencrypt/
 !.dumps/.keep
 
 sqlite.db
+
+.chroma/*
+!chroma/.keep
