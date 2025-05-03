@@ -5,7 +5,7 @@ from graph.state import GraphState
 from ingestion import retriever
 
 
-def retrive(state: GraphState) -> Dict[str, Any]:
+def retrieve(state: GraphState) -> Dict[str, Any]:
   """
   Retrieve documents from the vector store.
   """
