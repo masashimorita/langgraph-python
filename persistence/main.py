@@ -50,3 +50,17 @@ app = builder.compile(checkpointer=memory, interrupt_before=[HUMAN_FEEDBACK])
 if __name__ == "__main__":
     print("Hello Persistence Flow")
 
+    config = {"configurable": {"thread_id": "1"}}
+    for event in app.stream(input={"input": "Hello, world!"}, config=config, stream_mode="values"):
+        print(event)
+      
+    print(app.get_state(config=config).next)
+
+    user_input = input("Tell me how you want to update the state: ")
+    app.update_state(config, {"user_feedback": user_input}, as_node=HUMAN_FEEDBACK)
+
+    print("---------- State after update ----------")
+    print(app.get_state(config=config))
+
+    for event in app.stream(input=None, config=config, stream_mode="values"):
+        print(event)
