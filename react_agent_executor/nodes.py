@@ -23,4 +23,5 @@ def execute_tools(state: AgentState) -> AgentState:
   """
   agent_action = state["agent_outcome"]
   output = tool_executor.invoke(agent_action)
+  return {"intermediate_steps": [(agent_action, str(output))]}
 
