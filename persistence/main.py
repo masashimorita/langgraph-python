@@ -1,10 +1,17 @@
+import os
 from typing import TypedDict
 from dotenv import load_dotenv
 from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.memory import MemorySaver
+from langgraph.checkpoint.sqlite import SqliteSaver
+import sqlite3
 
 
 load_dotenv()
+
+
+conn = sqlite3.connect(f"{os.getenv('ROOT_DIR')}/.checkpoints/sqlite.sqlite", check_same_thread=False)
+memory = SqliteSaver(conn)
 
 
 STEP_1 = "step_1"
@@ -39,9 +46,6 @@ builder.add_edge(START, STEP_1)
 builder.add_edge(STEP_1, HUMAN_FEEDBACK)
 builder.add_edge(HUMAN_FEEDBACK, STEP_3)
 builder.add_edge(STEP_3, END)
-
-
-memory = MemorySaver()
 
 
 app = builder.compile(checkpointer=memory, interrupt_before=[HUMAN_FEEDBACK])

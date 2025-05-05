@@ -153,3 +153,6 @@ sqlite.db
 
 .chroma/*
 !chroma/.keep
+
+.checkpoints/*
+!.checkpoints/.keep
